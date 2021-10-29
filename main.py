@@ -18,7 +18,7 @@ def send_message(client_socket):
 
     request = client_socket.recv(4096)
 
-    if not request:
+    if request:
         response = 'hello world\n'.encode()
         client_socket.send(response)
     else:
@@ -26,7 +26,7 @@ def send_message(client_socket):
 
 def event_loop():
     while True:
-        
+
         ready_to_read, _, _ = select(to_monitor, [], []) # read, write, errors
 
         for sock in ready_to_read:
